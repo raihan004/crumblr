@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @project.name %>
+</p>
+<blockquote><%= @project.description%></blockquote>
+<p>
+  <strong>Ends at:</strong>
+  <%= @project.ends_at %>
+</p>
+
+<h2>Task for This Project</h2>
+<!-- <p>
+  <% test = 'test' %>
+  I don't know why this <%= test %> don't work
+</p> -->
+<ul>
+  <% @project.tasks.each do |task| %>
+    <li>
+      <%= check_box_tag "task_done_#{task.id}", "", task.done, data: {id: task.id}, class: 'task_done' %>
+      <%= link_to task.title, task %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
